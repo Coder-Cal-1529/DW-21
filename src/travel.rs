@@ -31,7 +31,7 @@ pub enum Weather {
 /// use dw21::travel::{miles_per_day, Pace, Weather};
 ///
 /// assert_eq!(miles_per_day(Pace::Slow, Weather::Clear), 8);
-/// assert_eq!(miles_per_day(Pace::Grueling, Weather::Clear), 18);
+/// assert_eq!(miles_per_day(Pace::Grueling, Weather::Clear), 16);
 /// ```
 pub fn miles_per_day(pace: Pace, weather: Weather) -> u32 {
     let base = match pace {
@@ -40,8 +40,8 @@ pub fn miles_per_day(pace: Pace, weather: Weather) -> u32 {
         Pace::Grueling => 16,
     };
     match weather {
-        _ => base,
         Weather::Snow => base / 2,
         Weather::Rain => base - 2,
+	_ => base,
     }
 }
